@@ -4,7 +4,7 @@ import { PageLoading } from '@ant-design/pro-layout';
 import type { RunTimeLayoutConfig } from 'umi';
 import { history, Link } from 'umi';
 import RightContent from '@/components/RightContent';
-import Footer from '@/components/Footer';
+// import Footer from '@/components/Footer';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import defaultSettings from '../config/defaultSettings';
@@ -58,7 +58,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     waterMarkProps: {
       content: initialState?.currentUser?.name,
     },
-    footerRender: () => <Footer />,
+    // footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
@@ -105,4 +105,18 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     },
     ...initialState?.settings,
   };
+};
+
+// http 拦截器
+const authHeaderInterceptor = (url: string, options: any) => {
+  const authHeader = { Authorization: 'Bearer xxxxxx' };
+  return {
+    url: `http://58.34.47.130:13490${url}`,
+    options: { ...options, interceptors: true, headers: authHeader },
+  };
+};
+export const request: any = {
+  // errorHandler,
+  // 新增自动添加AccessToken的请求前拦截器
+  requestInterceptors: [authHeaderInterceptor],
 };

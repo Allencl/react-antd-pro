@@ -1,5 +1,10 @@
 ﻿export default [
   {
+    path: '/aaa',
+    component: '@/view-system/aaa',
+  },
+
+  {
     path: '/user',
     layout: false,
     routes: [
