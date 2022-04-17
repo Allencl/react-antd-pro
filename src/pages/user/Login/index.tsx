@@ -97,8 +97,8 @@ const Login: React.FC = () => {
       <div className={styles.content}>
         <LoginForm
           logo={<img alt="logo" src="/logo.svg" />}
-          title="Ant Design"
-          subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
+          title="西信信息"
+          // subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
           initialValues={{
             autoLogin: true,
           }}
@@ -116,6 +116,8 @@ const Login: React.FC = () => {
             await handleSubmit(values as API.LoginParams);
           }}
         >
+
+        <div style={{height:60}}></div>
           {/* <Tabs activeKey={type} onChange={setType}>
             <Tabs.TabPane
               key="account"
@@ -290,7 +292,7 @@ const Login: React.FC = () => {
           </div>
         </LoginForm>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
