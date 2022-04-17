@@ -64,6 +64,9 @@ const Login: React.FC = () => {
         // await fetchUserInfo();
         /** 此方法会跳转到 redirect 参数所在的位置 */
 
+        // 缓存登录信息
+        localStorage.setItem("config_login",JSON.stringify(msg))
+
         history.push('/');
 
 

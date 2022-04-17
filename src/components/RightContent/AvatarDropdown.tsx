@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback,useState,useEffect } from 'react';
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar, Menu, Spin } from 'antd';
 import { history, useModel } from 'umi';
@@ -31,6 +31,7 @@ const loginOut = async () => {
 };
 
 const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
+  const [name, setName] = useState('');
   const { initialState, setInitialState } = useModel('@@initialState');
 
   const onMenuClick = useCallback(
@@ -93,11 +94,23 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
       </Menu.Item>
     </Menu>
   );
+
+
+  useEffect(() => {
+    try {
+      const name=JSON.parse( (localStorage.getItem("config_login")||"{}")  )?.username||"未知";
+      setName(name)
+    } catch (error) {
+      
+    }
+
+  },[]);
+
   return (
     <HeaderDropdown overlay={menuHeaderDropdown}>
       <span className={`${styles.action} ${styles.account}`}>
         <Avatar size="small" className={styles.avatar} src={"https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png"} alt="avatar" />
-        <span className={`${styles.name} anticon`}>{"admin"}</span>
+        <span className={`${styles.name} anticon`}>{name}</span>
       </span>
     </HeaderDropdown>
   );
