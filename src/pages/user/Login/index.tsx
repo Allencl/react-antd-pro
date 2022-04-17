@@ -61,13 +61,16 @@ const Login: React.FC = () => {
           defaultMessage: '登录成功！',
         });
         message.success(defaultLoginSuccessMessage);
-        await fetchUserInfo();
+        // await fetchUserInfo();
         /** 此方法会跳转到 redirect 参数所在的位置 */
 
-        if (!history) return;
-        const { query } = history.location;
-        const { redirect } = query as { redirect: string };
-        history.push(redirect || '/');
+        history.push('/');
+
+
+        // if (!history) return;
+        // const { query } = history.location;
+        // const { redirect } = query as { redirect: string };
+        // history.push(redirect || '/');
         return;
       }
       // console.log(msg);

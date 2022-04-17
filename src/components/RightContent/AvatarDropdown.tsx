@@ -58,15 +58,15 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
     </span>
   );
 
-  if (!initialState) {
-    return loading;
-  }
+  // if (!initialState) {
+  //   return loading;
+  // }
 
-  const { currentUser } = initialState;
+  // const { currentUser } = initialState;
 
-  if (!currentUser || !currentUser.name) {
-    return loading;
-  }
+  // if (!currentUser || !currentUser.name) {
+  //   return loading;
+  // }
 
   const menuHeaderDropdown = (
     <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
@@ -93,8 +93,8 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
   return (
     <HeaderDropdown overlay={menuHeaderDropdown}>
       <span className={`${styles.action} ${styles.account}`}>
-        <Avatar size="small" className={styles.avatar} src={currentUser.avatar} alt="avatar" />
-        <span className={`${styles.name} anticon`}>{currentUser.name}</span>
+        <Avatar size="small" className={styles.avatar} src={"https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png"} alt="avatar" />
+        <span className={`${styles.name} anticon`}>{"admin"}</span>
       </span>
     </HeaderDropdown>
   );
