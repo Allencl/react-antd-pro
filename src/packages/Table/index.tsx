@@ -2,72 +2,80 @@ import { useState,useEffect } from 'react';
 import { Table,Pagination } from 'antd';
 
 
-
   
-  const data = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-    },
-  ];
-  
-  export default (props:any) => {
+export default (props:any) => {
 
-    const [page,setPage]=useState(1);   // 页码
-    const [total,setTotal]=useState(1);   // 总页数
-    const [pageSize,setPageSize]=useState(10);   // 每页条数
+  const {HTTP}=props;
+
+  const [current,setCurrent]=useState(1);   // 页码
+  const [total,setTotal]=useState(1);   // 总页数
+  const [pageSize,setPageSize]=useState(10);   // 每页条数
+
+  const [data,setData]=useState([]);   // 数据
 
 
-    // console.log(props)
+  // 初始化
+  const initFunc= async(options?: { [key: string]: any })=>{
 
-    // 分页
-    const onPageChange=(page:number, pageSize:number)=>{
-        console.log(page)
-        console.log(pageSize)
+    const {data=[],page,total,size} = await HTTP({
+      url_params:{
+        currentPage: options?.current || current,
+        pageSize: options?.pageSize || pageSize,
+      },        
+    });
+
+    setCurrent(page)
+    setTotal(total)
+    setPageSize(size)
+    setData(data.map((o:any,i:number)=>Object.assign(o,{key:i})))
+
+  }
+
+  // 分页
+  const onPageChange=(current:number,currentPageSize:number)=>{
+    if(pageSize==currentPageSize){
+      initFunc({
+        current:current,
+        pageSize:pageSize
+      })
     }
+  }
 
-    useEffect(() => {
+  // 
+  const onPageSizeChange=(current:number,currentPageSize:number)=>{
+    initFunc({
+      current:1,
+      pageSize:currentPageSize
+    })
+  }
 
-    },[]);
+  useEffect(() => {
+    HTTP && initFunc()
+  },[]);
 
-    return (
-      <>
-        <Table 
-            {...props} 
-            pagination={false}
-            size={"small"}
-            dataSource={data} 
-        />
-        <div style={{padding:12,background:'#fff'}}>
-            <Pagination 
-                current={page}
-                total={total} 
-                pageSize={pageSize}
+  return (
+    <>
+      <Table 
+          {...props} 
+          pagination={false}
+          size={"small"}
+          dataSource={data} 
+      />
+      <div style={{padding:12,background:'#fff'}}>
+          <Pagination 
+              current={current}
+              total={total} 
+              pageSize={pageSize}
 
-                onChange={onPageChange}
-                size="small" 
-                showSizeChanger 
-                showQuickJumper 
-            />
-        </div>
+              onChange={onPageChange}
+              onShowSizeChange={onPageSizeChange}	
+              size="small" 
+              showTotal={total => `共 ${total} 条`}
+              showSizeChanger 
+              showQuickJumper 
+          />
+      </div>
 
-      </>
-    );
-  };
+    </>
+  );
+};

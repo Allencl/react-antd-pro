@@ -4,8 +4,8 @@
 export default {
     routes:[
         {
-            path: '/bbb',
-            component: '@/view-system/aaa',
+            path: '/view-system/user',
+            component: '@/view-system/user',
         },
     ]
 }

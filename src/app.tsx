@@ -8,6 +8,7 @@ import RightContent from '@/components/RightContent';
 import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import defaultSettings from '../config/defaultSettings';
+import { Children } from 'react';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -59,6 +60,31 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       content: initialState?.currentUser?.name,
     },
     // footerRender: () => <Footer />,
+    menu: {
+      // 每当 initialState?.currentUser?.userid 发生修改时重新执行 request
+      // params: {
+      //   userId: initialState?.currentUser?.userid,
+      // },
+      locale:false,
+      request: async (params, defaultMenuData) => {
+        // initialState.currentUser 中包含了所有用户信息
+        // const menuData = await fetchMenuData();
+        
+        // console.log(defaultMenuData)
+        return [
+          {
+            name:"系统管理",
+            children:[
+              {
+                name:"用户管理",
+                path:"/view-system/user",
+              }
+            ]
+          }
+        ];
+      },
+    },
+
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
@@ -109,9 +135,22 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
 
 // http 拦截器
 const authHeaderInterceptor = (url: string, options: any) => {
-  const authHeader = { Authorization: 'Bearer xxxxxx' };
+  const token=JSON.parse( (localStorage.getItem("config_login")||"{}")  )?.token||"";
+  const authHeader = { Authorization: `Bearer ${token}` };
+
+  const _bufferParmasURL=Object.entries((options["url_params"]||{}));
+  let _parmasURL="";  
+  let _paramsRESTful=options["url_RESTful"]||"";   // RESTful
+
+  // 格式化 url
+  if(_bufferParmasURL.length){
+      _bufferParmasURL.map(o=>{ _parmasURL+=`${o[0]}=${o[1]}&` });
+      _parmasURL=`?${_parmasURL.slice(0,_parmasURL.length-1)}`
+  }
+
+
   return {
-    url: `http://58.34.47.130:13490${url}`,
+    url: `http://58.34.47.130:13490${url}${_paramsRESTful}${_parmasURL}`,
     options: { ...options, interceptors: true, headers: authHeader },
   };
 };
