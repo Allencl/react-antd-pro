@@ -151,7 +151,7 @@ const authHeaderInterceptor = (url: string, options: any) => {
 
   return {
     url: `http://58.34.47.130:13490${url}${_paramsRESTful}${_parmasURL}`,
-    options: { ...options, interceptors: true, headers: authHeader },
+    options: { ...options,data:options?.data||{}, interceptors: true, headers: authHeader },
   };
 };
 export const request: any = {

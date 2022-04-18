@@ -1,17 +1,18 @@
-import { useState,useEffect } from 'react';
+import { useState,useEffect,forwardRef,useImperativeHandle } from 'react';
 import { Table,Pagination } from 'antd';
 
 
-  
-export default (props:any) => {
 
-  const {HTTP}=props;
+
+  
+const table= (props:any,ref:any) => {
 
   const [current,setCurrent]=useState(1);   // 页码
   const [total,setTotal]=useState(1);   // 总页数
   const [pageSize,setPageSize]=useState(10);   // 每页条数
-
   const [data,setData]=useState([]);   // 数据
+
+  const {HTTP}=props;
 
 
   // 初始化
@@ -21,7 +22,8 @@ export default (props:any) => {
       url_params:{
         currentPage: options?.current || current,
         pageSize: options?.pageSize || pageSize,
-      },        
+      },
+      payload:options?.formData        
     });
 
     setCurrent(page)
@@ -41,7 +43,7 @@ export default (props:any) => {
     }
   }
 
-  // 
+  // 每页条数
   const onPageSizeChange=(current:number,currentPageSize:number)=>{
     initFunc({
       current:1,
@@ -52,6 +54,13 @@ export default (props:any) => {
   useEffect(() => {
     HTTP && initFunc()
   },[]);
+
+  // 父组件调用
+  useImperativeHandle(ref,() => ({
+    update: (options:any) => {
+      initFunc(options)
+    }
+  }));
 
   return (
     <>
@@ -79,3 +88,7 @@ export default (props:any) => {
     </>
   );
 };
+
+
+
+export default forwardRef(table)
