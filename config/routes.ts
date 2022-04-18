@@ -1,8 +1,7 @@
-﻿export default [
-  {
-    path: '/aaa',
-    component: '@/view-system/aaa',
-  },
+﻿import GlobalRoutes from "../src/router"   // 路由
+
+export default [
+  ...GlobalRoutes.routes,
 
   {
     path: '/user',
