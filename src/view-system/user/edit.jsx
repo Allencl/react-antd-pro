@@ -58,7 +58,7 @@ const Edit= (props,ref) => {
         <Form form={form} autoComplete="off" layout="vertical">
           <Row gutter={16}>
             <Col span={12}>
-              <Form.Item name="user" label="用户名" rules={[{required:true,message:'该项必填！'}]}>
+              <Form.Item name="user" label="用户名" rules={[{required:true}]}>
                 <Input />
               </Form.Item>
             </Col>
@@ -68,7 +68,7 @@ const Edit= (props,ref) => {
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item name="phone" label="手机号" rules={[{required:true,message:'该项必填！'}]}>
+              <Form.Item name="phone" label="手机号" rules={[{required:true}]}>
                 <Input />
               </Form.Item>
             </Col>  
