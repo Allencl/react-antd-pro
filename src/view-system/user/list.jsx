@@ -1,4 +1,4 @@
-import { useRef,forwardRef,useImperativeHandle } from 'react';
+import { useRef,useState,forwardRef,useImperativeHandle } from 'react';
 
 import { Table, Checkbox,Button } from 'antd';
 import { PlusOutlined,FormOutlined,CloseSquareOutlined } from '@ant-design/icons';
@@ -10,7 +10,7 @@ import { attachTypeApi } from 'antd/lib/message';
 
 
 const List= (props,ref) => {
-  
+
   const tableRef = useRef(null);  // table
 
   const {onOpenEdit}=props
@@ -87,5 +87,5 @@ const List= (props,ref) => {
   );
 };
 
-
-export default forwardRef(List)
+const ListPage = forwardRef(List);
+export default ListPage;

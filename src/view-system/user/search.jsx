@@ -1,4 +1,4 @@
-import { Form, Input, Button, Select } from 'antd';
+import { Form, Input, Button } from 'antd';
 import {WisTableSearch} from "@/packages"   // 公共组件
 
 
@@ -47,6 +47,5 @@ const Search= (props) => {
     );
 };
 
-
-export default Search
+export default Search;
 

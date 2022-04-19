@@ -1,11 +1,11 @@
-import { useRef } from 'react';
+import { useRef,forwardRef } from 'react';
 
 import PageSearch from "./search"   // 列表 查询头
 import PageList from "./list"   // 列表页
 import PageEdit from "./edit"   // 编辑页
 
 
-export default () => {
+const Index= () => {
 
   const listRef = useRef(null);  // 列表
   const editRef = useRef(null);  // 编辑
@@ -21,6 +21,8 @@ export default () => {
     listRef.current.onUpdateTable(options)
   }
 
+
+
   return (
     <>
       <PageSearch onUpdateTable={onUpdateTable} />
@@ -29,3 +31,6 @@ export default () => {
     </>
   );
 };
+
+
+export default Index

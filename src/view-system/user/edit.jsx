@@ -1,14 +1,16 @@
 import { useRef,useState,forwardRef,useImperativeHandle } from 'react';
-import { Form,Input,Drawer,Space, Button,Row,Col } from 'antd';
+import { Form,Input,Drawer,Space,Checkbox, Button,Row,Col } from 'antd';
 import { CheckOutlined } from '@ant-design/icons';
+
+import {WisSelect} from "@/packages"   // 公共组件
 
 
 const Edit= (props,ref) => {
 
-  const [visible, setVisible] = useState(false);
-  const [title, setTitle] = useState('');
-  const [form] = Form.useForm();  // 表单
+  const [visible, setVisible] = useState(false);  // show 侧栏
+  const [title, setTitle] = useState('');   // 标题
 
+  const [form] = Form.useForm();  // 表单
 
 
   // 打开侧栏
@@ -34,8 +36,7 @@ const Edit= (props,ref) => {
   useImperativeHandle(ref,() => ({
     // 切换侧栏
     onChangeDrawer: (options={}) => {
-      console.log(options)
-
+      console.log(options)  
 
       setTitle(options.title)
       showDrawer()
@@ -55,7 +56,12 @@ const Edit= (props,ref) => {
           </Space>
         }
       >
-        <Form form={form} autoComplete="off" layout="vertical">
+        <Form 
+          form={form} 
+          autoComplete="off" 
+          layout="vertical"
+          initialValues={{state:true}}
+        >
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item name="user" label="用户名" rules={[{required:true}]}>
@@ -76,12 +82,30 @@ const Edit= (props,ref) => {
               <Form.Item name="email" label="邮箱">
                 <Input />
               </Form.Item>
-            </Col>                      
+            </Col>    
+            <Col span={12}>
+              <Form.Item  name="state" valuePropName="checked" label="激活">
+                <Checkbox />
+              </Form.Item>
+            </Col>    
+            <Col span={12}>
+              <Form.Item  name="permission" label="角色授权" >
+                <WisSelect 
+                  form={form} 
+                  name="permission"
+                  RequestURL="/system/role/findByNameLikeOrderByName?name="
+                  formatValue={o=>o.id}
+                  formatLabel={o=>o.name}
+                />
+              </Form.Item>
+            </Col>  
+                        
           </Row>                                  
-        </Form>
+        </Form> 
       </Drawer>
     </>
   );
 };
 
-export default forwardRef(Edit)
+const EditForm = forwardRef(Edit);
+export default EditForm;

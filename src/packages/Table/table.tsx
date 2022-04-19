@@ -5,7 +5,7 @@ import { Table,Pagination } from 'antd';
 
 
   
-const table= (props:any,ref:any) => {
+const WisTable= (props:any,ref:any) => {
 
   const [current,setCurrent]=useState(1);   // 页码
   const [total,setTotal]=useState(1);   // 总页数
@@ -90,5 +90,6 @@ const table= (props:any,ref:any) => {
 };
 
 
+const WisTableModule = forwardRef(WisTable);
+export default WisTableModule;
 
-export default forwardRef(table)
