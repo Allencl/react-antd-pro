@@ -8,17 +8,24 @@ import PageEdit from "./edit"   // 编辑页
 export default () => {
 
   const listRef = useRef(null);  // 列表
+  const editRef = useRef(null);  // 编辑
+
+
+  // 编辑
+  const onOpenEdit=(options)=>{
+    editRef.current.onChangeDrawer(options)
+  }
 
   // 刷新 table
   const onUpdateTable=(options={})=>{
-    listRef.current.updateTable(options)
+    listRef.current.onUpdateTable(options)
   }
 
   return (
     <>
       <PageSearch onUpdateTable={onUpdateTable} />
-      <PageList ref={listRef}  />
-      <PageEdit  />
+      <PageList ref={listRef} onOpenEdit={onOpenEdit}  />
+      <PageEdit ref={editRef}  />
     </>
   );
 };

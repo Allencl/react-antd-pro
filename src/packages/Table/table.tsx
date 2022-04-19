@@ -57,7 +57,7 @@ const table= (props:any,ref:any) => {
 
   // 父组件调用
   useImperativeHandle(ref,() => ({
-    update: (options:any) => {
+    onUpdate: (options:any) => {
       initFunc(options)
     }
   }));

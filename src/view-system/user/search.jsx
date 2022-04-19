@@ -2,7 +2,7 @@ import { Form, Input, Button, Select } from 'antd';
 import {WisTableSearch} from "@/packages"   // 公共组件
 
 
-export default (props) => {
+const Search= (props) => {
     const {onUpdateTable}=props;
     const [form] = Form.useForm();
 
@@ -32,22 +32,13 @@ export default (props) => {
         <>
             <WisTableSearch onReset={onReset} onSearch={onSearch}>
                 <Form form={form} autoComplete="off" layout="inline">
-                    <Form.Item
-                        name="username"
-                        label="用户名"
-                    >
+                    <Form.Item name="username" label="用户名">
                         <Input />
                     </Form.Item>
-                    <Form.Item
-                        name="email"
-                        label="邮箱"
-                    >
+                    <Form.Item name="email" label="邮箱">
                         <Input />
                     </Form.Item>
-                    <Form.Item
-                        name="fullName"
-                        label="姓名"
-                    >
+                    <Form.Item name="fullName" label="姓名">
                         <Input />
                     </Form.Item>                                        
                 </Form>
@@ -55,3 +46,7 @@ export default (props) => {
         </>
     );
 };
+
+
+export default Search
+
