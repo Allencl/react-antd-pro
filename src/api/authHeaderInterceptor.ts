@@ -1,12 +1,6 @@
-import { useModel } from 'umi'
-
 
 // http 请求 拦截器
 const authHeaderInterceptor = (url: string, options: any) => {
-
-    // const {loading}=useModel("number",(model:any) => ({ loading: model.loading}));
-
-    // console.log(loading)
   
     const token=JSON.parse( (localStorage.getItem("config_login")||"{}")  )?.token||"";
     const authHeader = { Authorization: `Bearer ${token}` };
