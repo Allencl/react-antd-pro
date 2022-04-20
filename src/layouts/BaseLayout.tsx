@@ -1,4 +1,5 @@
-import { ConfigProvider } from 'antd';
+import { ConfigProvider,Spin } from 'antd';
+
 
 const layout = ({ children }:any) => {
 
@@ -9,10 +10,12 @@ const layout = ({ children }:any) => {
 
     return (
         <>  
-            <ConfigProvider form={{ validateMessages }}>
-                {/* <h2>999222</h2> */}
-                {children}
-            </ConfigProvider>
+            <Spin spinning={!true} tip="Loading..." delay={500}>
+                <ConfigProvider form={{ validateMessages }}>
+                    {/* <h2>999222</h2> */}
+                    {children}
+                </ConfigProvider>
+            </Spin>
         </>
     )
 };

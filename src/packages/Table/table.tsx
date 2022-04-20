@@ -27,11 +27,11 @@ const WisTable= (props:any,ref:any) => {
     try {
       const {data=[],page,total,size} = await request(RequestURL,{
         method: 'POST',
-        url_params:{
+        data:{
           currentPage: options?.current || current,
           pageSize: options?.pageSize || pageSize,
-        },
-        payload:options?.formData        
+          ...options?.formData
+        }        
       });
   
       setCurrent(page)
