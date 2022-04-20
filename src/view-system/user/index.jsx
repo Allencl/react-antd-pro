@@ -27,7 +27,7 @@ const Index= () => {
     <>
       <PageSearch onUpdateTable={onUpdateTable} />
       <PageList ref={listRef} onOpenEdit={onOpenEdit}  />
-      <PageEdit ref={editRef}  />
+      <PageEdit ref={editRef} onUpdateTable={onUpdateTable}  />
     </>
   );
 };

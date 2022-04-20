@@ -1,8 +1,9 @@
 import { useRef,useState,forwardRef,useImperativeHandle } from 'react';
-import { Table, Checkbox,Button } from 'antd';
+import { Table, Checkbox,Button,message,Popconfirm } from 'antd';
 import { PlusOutlined,FormOutlined,CloseSquareOutlined } from '@ant-design/icons';
 
 import {WisTable,WisTableButton} from "@/packages"   // 公共组件
+import {DeleteUser} from "@/api/system/user"  // api
 
 
 const List= (props,ref) => {
@@ -14,6 +15,18 @@ const List= (props,ref) => {
   // 添加 | 修改
   const onEdit=(options)=>{
     onOpenEdit && onOpenEdit(options)
+  }
+
+  // 删除
+  const onDelete= async(record)=>{
+    try {
+      await DeleteUser(record.id)
+      message.success("删除成功！")
+
+      tableRef.current.onUpdate()  // 刷新table
+    } catch (error) {
+      
+    }
   }
 
   // 父组件调用
@@ -61,7 +74,13 @@ const List= (props,ref) => {
         return(
           <>
             <Button onClick={()=>onEdit({title:"修改",record:record})} size='small' type="text" title='修改' icon={<FormOutlined />} />
-            <Button size='small' type="text" title='删除' danger icon={<CloseSquareOutlined />} />
+            
+            <Popconfirm
+              title="确定删除?"
+              onConfirm={()=> onDelete(record) }
+            >
+              <Button size='small' type="text" title='删除' danger icon={<CloseSquareOutlined />} />
+            </Popconfirm>
           </>
         )
       },
