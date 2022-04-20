@@ -1,12 +1,8 @@
 import { useRef,useState,forwardRef,useImperativeHandle } from 'react';
-
 import { Table, Checkbox,Button } from 'antd';
 import { PlusOutlined,FormOutlined,CloseSquareOutlined } from '@ant-design/icons';
 
 import {WisTable,WisTableButton} from "@/packages"   // 公共组件
-import {getUserList} from "@/api/system/user.ts"  // api
-import { attachTypeApi } from 'antd/lib/message';
-
 
 
 const List= (props,ref) => {
@@ -80,7 +76,7 @@ const List= (props,ref) => {
 
       <WisTable 
         ref={tableRef}
-        HTTP={getUserList}
+        RequestURL="/system/user/list"
         columns={columns} 
       />
     </>

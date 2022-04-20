@@ -1,25 +1,23 @@
 
-import { useState,useEffect,forwardRef,useImperativeHandle } from 'react';
+import { useState,useEffect,useCallback} from 'react';
 import { Select } from 'antd';
 import { request } from 'umi';
 
 
 const WisSelect= (props:any,ref:any) => {
 
-    const {RequestURL,form,formatValue=()=>{},formatLabel=()=>{}}=props
+    const {RequestURL,name,form,formatValue=()=>{},formatLabel=()=>{},...others}=props
+
 
     const [loading,setLoading]=useState(false);   // loading
     const [options,setOptions]=useState([]);   // 数据
 
 
-
-
-
-
-
     // 获取数据
     const getOptions= async()=>{
         try {
+            setLoading(true)
+
             const data = await request(RequestURL,{
                 method: 'GET',
             }); 
@@ -27,7 +25,8 @@ const WisSelect= (props:any,ref:any) => {
             const _List=(data||[]).map((o:any,i:number)=>{
                 return {
                     value: (formatValue && formatValue(o))||i,
-                    label:(formatLabel && formatLabel(o))||""
+                    label:(formatLabel && formatLabel(o))||"",
+                    _options:o
                 }
             })
 
@@ -43,30 +42,26 @@ const WisSelect= (props:any,ref:any) => {
     // 展开
     const onDropdownVisibleChange=(active:boolean)=>{
         if(active && !options.length){
-            setLoading(true)
             getOptions()
         }else{
             setLoading(false)
         }
     }
 
-    // 选择
-    const onChange=(...aaa:any)=>{
-        console.log(aaa)
-    }
 
     useEffect(() => {
-        // RequestURL && getOptions()
+        // console.log(333)
     },[]);
 
     return(
         <>
             <Select 
+                {...others}
+                
                 placeholder="请选择"
                 allowClear
                 loading={loading}
                 options={options}
-                onChange={onChange}
                 onDropdownVisibleChange={onDropdownVisibleChange}
             />
         </>
@@ -74,5 +69,5 @@ const WisSelect= (props:any,ref:any) => {
 }
 
 
-const WisSelectModule = forwardRef(WisSelect);
-export default WisSelectModule;
+
+export default WisSelect;

@@ -1,10 +1,12 @@
 import { request } from 'umi';
 
-/* 获取列表 */
-export async function getUserList(params?: { [key: string]: any }) {
-  return request('/system/user/list', {
+
+
+/** 添加 */
+export async function createUsers(formData?: { [key: string]: any }) {
+  return request('/system/user/create', {
     method: 'POST',
-    url_params:params?.url_params,
-    data: params?.payload,
+    data: formData
   });
 }
+

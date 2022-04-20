@@ -91,11 +91,10 @@ const Edit= (props,ref) => {
             <Col span={12}>
               <Form.Item  name="permission" label="角色授权" >
                 <WisSelect 
-                  form={form} 
-                  name="permission"
                   RequestURL="/system/role/findByNameLikeOrderByName?name="
                   formatValue={o=>o.id}
                   formatLabel={o=>o.name}
+                  mode="multiple"
                 />
               </Form.Item>
             </Col>  

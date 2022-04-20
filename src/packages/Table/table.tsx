@@ -1,5 +1,6 @@
 import { useState,useEffect,forwardRef,useImperativeHandle } from 'react';
 import { Table,Pagination } from 'antd';
+import { request } from 'umi';
 
 
 
@@ -7,30 +8,41 @@ import { Table,Pagination } from 'antd';
   
 const WisTable= (props:any,ref:any) => {
 
+  
+  const [loading,setLoading]=useState(false);   // 加载
+
+
   const [current,setCurrent]=useState(1);   // 页码
   const [total,setTotal]=useState(1);   // 总页数
   const [pageSize,setPageSize]=useState(10);   // 每页条数
   const [data,setData]=useState([]);   // 数据
 
-  const {HTTP}=props;
+  const {RequestURL}=props;
 
 
   // 初始化
   const initFunc= async(options?: { [key: string]: any })=>{
+    setLoading(true)
 
-    const {data=[],page,total,size} = await HTTP({
-      url_params:{
-        currentPage: options?.current || current,
-        pageSize: options?.pageSize || pageSize,
-      },
-      payload:options?.formData        
-    });
+    try {
+      const {data=[],page,total,size} = await request(RequestURL,{
+        method: 'POST',
+        url_params:{
+          currentPage: options?.current || current,
+          pageSize: options?.pageSize || pageSize,
+        },
+        payload:options?.formData        
+      });
+  
+      setCurrent(page)
+      setTotal(total)
+      setPageSize(size)
+      setData(data.map((o:any,i:number)=>Object.assign(o,{key:i})))
+    
+    } catch (error) {
+    }
 
-    setCurrent(page)
-    setTotal(total)
-    setPageSize(size)
-    setData(data.map((o:any,i:number)=>Object.assign(o,{key:i})))
-
+    setLoading(false)
   }
 
   // 分页
@@ -52,7 +64,7 @@ const WisTable= (props:any,ref:any) => {
   }
 
   useEffect(() => {
-    HTTP && initFunc()
+    RequestURL && initFunc()
   },[]);
 
   // 父组件调用
@@ -66,6 +78,7 @@ const WisTable= (props:any,ref:any) => {
     <>
       <Table 
           {...props} 
+          loading={loading}
           pagination={false}
           size={"small"}
           dataSource={data} 
