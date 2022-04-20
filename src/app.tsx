@@ -10,9 +10,9 @@ import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import defaultSettings from '../config/defaultSettings';
 import { Children } from 'react';
 
-
+import Icon,{ RightSquareOutlined  } from '@ant-design/icons';
 import authHeaderInterceptor from './api/authHeaderInterceptor'
-
+import WisMenu from './layouts/WisMenu'
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -75,20 +75,18 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
         // const menuData = await fetchMenuData();
         
         // console.log(defaultMenuData)
-        return [
-          {
-            name:"系统管理",
-            children:[
-              {
-                name:"用户管理",
-                path:"/view-system/user",
-              }
-            ]
-          }
-        ];
+        return WisMenu;
+
       },
     },
-
+    menuDataRender:(menuData)=>{
+      return menuData.map((item) => {
+        return {
+          ...item,
+          icon:<Icon component={RightSquareOutlined} />
+        };
+      });
+    },
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
