@@ -1,0 +1,12 @@
+{
+    "PERMISSION_TYPE":[
+        {
+            "label":"LINK",
+            "value":"LINK"
+        },
+        {
+            "label":"BUTTON",
+            "value":"BUTTON"
+        }
+    ]
+}

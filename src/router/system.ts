@@ -7,5 +7,9 @@ export default {
             path: '/view-system/user',
             component: '@/view-system/user',
         },
+        {
+            path: '/view-system/permission',
+            component: '@/view-system/permission',
+        },
     ]
 }

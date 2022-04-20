@@ -3,17 +3,18 @@ import { useState,useEffect,useCallback} from 'react';
 import { Select } from 'antd';
 import { request } from 'umi';
 
+import BaseDataJSON from './database.json'
 
 const WisSelect= (props:any,ref:any) => {
 
-    const {RequestURL,name,form,formatValue=()=>{},formatLabel=()=>{},...others}=props
+    const {BaseDataType,RequestURL,name,form,formatValue=()=>{},formatLabel=()=>{},...others}=props
 
 
     const [loading,setLoading]=useState(false);   // loading
     const [options,setOptions]=useState([]);   // 数据
 
 
-    // 获取数据
+    // 获取远程数据
     const getOptions= async()=>{
         try {
             setLoading(true)
@@ -38,11 +39,17 @@ const WisSelect= (props:any,ref:any) => {
 
     }
 
+    // 获取 数据字典
+    const onGetBaseData=()=>{
+        setLoading(true)
+        setOptions(BaseDataJSON[BaseDataType]||[])
+        setLoading(false)
+    }
 
     // 展开
     const onDropdownVisibleChange=(active:boolean)=>{
         if(active && !options.length){
-            getOptions()
+            BaseDataType?onGetBaseData(): getOptions()
         }else{
             setLoading(false)
         }
