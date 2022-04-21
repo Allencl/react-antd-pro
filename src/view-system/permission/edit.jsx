@@ -52,7 +52,7 @@ const Edit= (props,ref) => {
       message.success(`${title}成功！`)
 
       // 刷新table
-      onUpdateTable({current:1,})
+      onUpdateTable()
       onClose()
     } catch (error) {
       
@@ -69,7 +69,7 @@ const Edit= (props,ref) => {
       message.success(`${title}成功！`)
 
       // 刷新table
-      onUpdateTable({current:1,})
+      onUpdateTable()
       onClose()
     } catch (error) {
       
@@ -154,7 +154,7 @@ const Edit= (props,ref) => {
             </Col>
             <Col span={12}>
               <Form.Item name="remark" label="描述" rules={[{required:true}]}>
-                <Input />
+                <Input.TextArea />
               </Form.Item>
             </Col>                
             <Col span={12}>

@@ -54,7 +54,7 @@ const Edit= (props,ref) => {
     message.success(`${title}成功！`)
 
     // 刷新table
-    onUpdateTable({current:1,})
+    onUpdateTable()
 
     onClose()
   }

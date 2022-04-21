@@ -6,6 +6,8 @@ const errorHandler = (error:any,options:any) => {
 
     const { response,data } = error;
 
+    console.log(data)
+
     if (response && response.status) {
         // console.log(response)
         // console.log(response.status)
@@ -27,10 +29,11 @@ const errorHandler = (error:any,options:any) => {
     }
   
     if (!response) {
-        message.error("网络异常！")
+        // message.error("网络异常！")
     }
 
     throw error;
-  };
-  
+};
+ 
+
 export default errorHandler

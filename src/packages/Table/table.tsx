@@ -33,7 +33,7 @@ const WisTable= (props:any,ref:any) => {
           ...options?.formData
         }        
       });
-  
+
       setCurrent(page)
       setTotal(total)
       setPageSize(size)
