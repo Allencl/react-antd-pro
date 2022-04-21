@@ -11,7 +11,12 @@ import defaultSettings from '../config/defaultSettings';
 import { Children } from 'react';
 
 import Icon,{ RightSquareOutlined  } from '@ant-design/icons';
-import authHeaderInterceptor from './api/authHeaderInterceptor'
+import authRequestInterceptors from './api/authRequestInterceptors'
+import authResponseInterceptors from './api/authResponseInterceptors'
+import errorHandler from './api/errorHandler'
+
+
+
 import WisMenu from './layouts/WisMenu'
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -137,7 +142,8 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
 
 
 export const request: any = {
-  // errorHandler,
+  errorHandler,
   // 新增自动添加AccessToken的请求前拦截器
-  requestInterceptors: [authHeaderInterceptor],
+  requestInterceptors: [authRequestInterceptors],
+  responseInterceptors:[authResponseInterceptors],
 };

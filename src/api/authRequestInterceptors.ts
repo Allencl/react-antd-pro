@@ -1,6 +1,6 @@
 
 // http 请求 拦截器
-const authHeaderInterceptor = (url: string, options: any) => {
+const authRequestInterceptors = (url: string, options: any) => {
   
     const token=JSON.parse( (localStorage.getItem("config_login")||"{}")  )?.token||"";
     const authHeader = { Authorization: `Bearer ${token}` };
@@ -22,4 +22,4 @@ const authHeaderInterceptor = (url: string, options: any) => {
     };
 };
 
-export default authHeaderInterceptor;
+export default authRequestInterceptors;
