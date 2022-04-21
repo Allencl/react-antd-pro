@@ -3,7 +3,7 @@ import { Table, Checkbox,Button,message,Popconfirm } from 'antd';
 import { PlusOutlined,FormOutlined,CloseSquareOutlined } from '@ant-design/icons';
 
 import {WisTable,WisTableButton} from "@/packages"   // 公共组件
-import {DeleteUser} from "@/api/system/user"  // api
+import {DeletePermission} from "@/api/system/permission"  // api
 
 
 const List= (props,ref) => {
@@ -20,7 +20,7 @@ const List= (props,ref) => {
   // 删除
   const onDelete= async(record)=>{
     try {
-      await DeleteUser(record.id)
+      await DeletePermission(record.id)
       message.success("删除成功！")
 
       tableRef.current.onUpdate()  // 刷新table

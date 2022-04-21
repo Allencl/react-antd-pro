@@ -70,19 +70,19 @@ const Edit= (props,ref) => {
     }
   }
 
-    // 修改
-    const onUpdateUsers=async(json)=>{
-      try {
-        const response = await UpdateUsers({
-          ...record,
-          ...json
-        })
-  
-        onuserRoleGrant(response,json)
-      } catch (error) {
-        
-      }
+  // 修改
+  const onUpdateUsers=async(json)=>{
+    try {
+      const response = await UpdateUsers({
+        ...record,
+        ...json
+      })
+
+      onuserRoleGrant(response,json)
+    } catch (error) {
+      
     }
+  }
 
   // 提交
   const onSubmit=async()=>{

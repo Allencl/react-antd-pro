@@ -3,7 +3,7 @@ import { Form,Input,Drawer,Space,Checkbox, Button,Row,Col,message } from 'antd';
 import { CheckOutlined } from '@ant-design/icons';
 
 import {WisSelect} from "@/packages"   // 公共组件
-import {CreateUsers,UpdateUsers,UserRoleGrant} from "@/api/system/user"  // api
+import {CreatePermission,UpdatePermission} from "@/api/system/permission"  // api
 
 
 const Edit= (props,ref) => {
@@ -13,6 +13,8 @@ const Edit= (props,ref) => {
 
   const [record, setRecord] = useState({});   // 行数据
   const [form] = Form.useForm();  // 表单
+  const [formType, setFormType] = useState('');   // 权限类型 表单值
+
 
   const {onUpdateTable}=props
 
@@ -28,6 +30,8 @@ const Edit= (props,ref) => {
         remark:rowData.description,
         buttonCode:rowData.buttonCode
       })
+
+      setFormType(rowData.uiType)
     }
 
     setVisible(true);
@@ -40,47 +44,37 @@ const Edit= (props,ref) => {
     setVisible(false);
   };
 
-  // 绑定权限
-  const onuserRoleGrant= async(response,formData)=>{
-    await UserRoleGrant({
-      url_RESTful:`/${response.id}`,
-      url_params:{
-        roleIds:formData.authorityValues.join(),
-      },      
-    })
-
-    message.success(`${title}成功！`)
-
-    // 刷新table
-    onUpdateTable({current:1,})
-
-    onClose()
-  }
 
   // 创建
   const onCreateUser=async(json)=>{
     try {
-      const response = await CreateUsers(json)
+      const response = await CreatePermission(json)
+      message.success(`${title}成功！`)
 
-      onuserRoleGrant(response,json)
+      // 刷新table
+      onUpdateTable({current:1,})
+      onClose()
     } catch (error) {
       
     }
   }
 
-    // 修改
-    const onUpdateUsers=async(json)=>{
-      try {
-        const response = await UpdateUsers({
-          ...record,
-          ...json
-        })
-  
-        onuserRoleGrant(response,json)
-      } catch (error) {
-        
-      }
+  // 修改
+  const onUpdateUsers=async(json)=>{
+    try {
+      const response = await UpdatePermission({
+        ...record,
+        ...json
+      })
+      message.success(`${title}成功！`)
+
+      // 刷新table
+      onUpdateTable({current:1,})
+      onClose()
+    } catch (error) {
+      
     }
+  }
 
   // 提交
   const onSubmit=async()=>{
@@ -88,12 +82,11 @@ const Edit= (props,ref) => {
       const formData= await form.validateFields()
 
       const _json={
-        username: formData.user,
-        fullName: formData.name,
-        mobile: formData.phone,
-        email: formData.email,
-        enabled: formData.state,
-        authorityValues: formData.permission
+        name: formData.name,
+        aclPattern:formData.path,
+        uiType: formData.type,
+        description: formData.remark,
+        buttonCode: formData.buttonCode,
       }
 
       // 修改 | 创建
@@ -107,6 +100,13 @@ const Edit= (props,ref) => {
       message.warning("表单不完整！")
     }
 
+  }
+
+  // 监听表单值 变化
+  const onValuesChange=(value)=>{
+    if(value?.type){
+      setFormType(value.type)
+    }
   }
 
   // 父组件调用
@@ -139,6 +139,7 @@ const Edit= (props,ref) => {
           autoComplete="off" 
           layout="vertical"
           initialValues={{type:"LINK"}}
+          onValuesChange={onValuesChange}
         >
           <Row gutter={16}>
             <Col span={12}>
@@ -161,14 +162,14 @@ const Edit= (props,ref) => {
                 <WisSelect BaseDataType="PERMISSION_TYPE"  />
               </Form.Item>
             </Col>  
-            {/* { form.getFieldValue("BUTTON") =="BUTTON" ?
+            { formType =="BUTTON" ?
               <Col span={12}>
                 <Form.Item name="buttonCode" label="按钮编码" rules={[{required:true}]}>
                   <Input />
                 </Form.Item>
               </Col> 
               :<></>
-            } */}
+            }
           </Row>                                  
         </Form> 
       </Drawer>
