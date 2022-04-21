@@ -158,7 +158,7 @@ const Edit= (props,ref) => {
               </Form.Item>
             </Col>  
             <Col span={12}>
-              <Form.Item name="email" label="邮箱">
+              <Form.Item name="email" label="邮箱" rules={[{type:'email'}]}>
                 <Input />
               </Form.Item>
             </Col>    
