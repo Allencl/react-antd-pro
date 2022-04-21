@@ -6,13 +6,9 @@ const errorHandler = (error:any,options:any) => {
 
     const { response,data } = error;
 
-    console.log(data)
 
     if (response && response.status) {
-        // console.log(response)
-        // console.log(response.status)
 
-        
         switch (response.status) {
             case 401:
                 message.error("登录超时，请重新登录！")

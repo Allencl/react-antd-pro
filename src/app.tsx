@@ -37,6 +37,13 @@ export async function getInitialState(): Promise<{
   fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
 }> {
   const fetchUserInfo = async () => {
+    const config_login=localStorage.getItem("config_login");
+
+    // 未登录
+    if(!config_login){
+      history.push('/user/login');
+    }
+
     // try {
     //   const msg = await queryCurrentUser();
     //   return msg.data;

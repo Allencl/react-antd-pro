@@ -41,6 +41,8 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
         // setInitialState((s) => ({ ...s, currentUser: undefined }));
         // loginOut();
         // console.log(1222)
+
+        localStorage.removeItem("config_login")
         history.push('/user/login');
 
         return;
