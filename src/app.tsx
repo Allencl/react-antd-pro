@@ -15,8 +15,7 @@ import authRequestInterceptors from './api/authRequestInterceptors'
 import authResponseInterceptors from './api/authResponseInterceptors'
 import errorHandler from './api/errorHandler'
 
-
-
+import BaseLayoutHead from './layouts/BaseLayoutHead'
 import WisMenu from './layouts/WisMenu'
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -70,6 +69,9 @@ export async function getInitialState(): Promise<{
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
   return {
+    headerContentRender:()=>{
+      return <BaseLayoutHead />
+    },
     rightContentRender: () => <RightContent />,
     disableContentMargin: false,
     waterMarkProps: {
