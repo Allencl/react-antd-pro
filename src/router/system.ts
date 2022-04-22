@@ -11,5 +11,9 @@ export default {
             path: '/view-system/permission',
             component: '@/view-system/permission',
         },
+        {
+            path: '/view-system/role',
+            component: '@/view-system/role',
+        }
     ]
 }

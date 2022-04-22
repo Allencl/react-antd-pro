@@ -18,8 +18,11 @@ const menu = [
         {
           "name": "权限管理",
           "path": "/view-system/permission"
+        },
+        {
+          "name": "角色管理",
+          "path": "/view-system/role"
         }
-
       ]
     }
 ]
