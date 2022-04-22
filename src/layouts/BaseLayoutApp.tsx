@@ -1,7 +1,13 @@
 import { ConfigProvider,Spin } from 'antd';
 
+import { RootState } from '@/store'
+import { useSelector, useDispatch } from 'react-redux'
+
 
 const LayoutApp = ({children}:any) => {
+
+    const loadingValue = useSelector((state: RootState) => state.loading.value)
+
 
     // 全局表单
     const validateMessages = {
@@ -10,7 +16,7 @@ const LayoutApp = ({children}:any) => {
 
     return (
         <>  
-            <Spin spinning={!true} tip="Loading..." delay={500}>
+            <Spin spinning={loadingValue} delay={300}>
                 <ConfigProvider form={{ validateMessages }}>
                     {children}
                 </ConfigProvider>

@@ -31,7 +31,8 @@ const WisTable= (props:any,ref:any) => {
           currentPage: options?.current || current,
           pageSize: options?.pageSize || pageSize,
           ...options?.formData
-        }        
+        },   
+        hideLoading:true    
       });
 
       setCurrent(page)

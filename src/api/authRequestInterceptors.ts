@@ -1,6 +1,13 @@
+import { store } from '@/store'
+import { changeLoading } from '@/store/loadingSlice'
+
 
 // http 请求 拦截器
 const authRequestInterceptors = (url: string, options: any) => {
+
+    // loading
+    (!options?.hideLoading) && store.dispatch(changeLoading(true))  
+
   
     const token=JSON.parse( (localStorage.getItem("config_login")||"{}")  )?.token||"";
     const authHeader = { Authorization: `Bearer ${token}` };
