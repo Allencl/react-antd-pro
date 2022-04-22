@@ -27,3 +27,12 @@ export async function DeleteRole(roleId?:number) {
         method: 'GET'
     });
 }
+
+
+
+/** 查看关联用户 */
+export async function FindUsers(roleId?:number) {
+  return request(`/system/role/findUsers/${roleId}`,{
+      method: 'GET'
+  });
+}

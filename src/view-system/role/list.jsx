@@ -1,6 +1,6 @@
 import { useRef,useState,forwardRef,useImperativeHandle } from 'react';
 import { Table, Checkbox,Button,message,Popconfirm } from 'antd';
-import { PlusOutlined,FormOutlined,CloseSquareOutlined } from '@ant-design/icons';
+import { PlusOutlined,FormOutlined,CloseSquareOutlined,EyeFilled } from '@ant-design/icons';
 
 import {WisTable,WisTableButton} from "@/packages"   // 公共组件
 import {DeleteRole} from "@/api/system/role"  // api
@@ -10,7 +10,7 @@ const List= (props,ref) => {
 
   const tableRef = useRef(null);  // table
 
-  const {onOpenEdit}=props
+  const {onOpenEdit,onOpenUserDetail}=props
 
   // 添加 | 修改
   const onEdit=(options)=>{
@@ -27,6 +27,12 @@ const List= (props,ref) => {
     } catch (error) {
       
     }
+  }
+
+
+  // 查看 关联用户
+  const onCheckUser=(record)=>{
+    onOpenUserDetail && onOpenUserDetail(record)
   }
 
   // 父组件调用
@@ -56,6 +62,13 @@ const List= (props,ref) => {
     {
       title: '关联用户',
       dataIndex: 'user',
+      render:(text,record)=>{
+        return (
+          <>
+            <Button onClick={()=> onCheckUser(record) } size='small' type="text" title='查看关联用户' icon={<EyeFilled />} />
+          </>
+        )
+      }
     },
     {
       title: '操作',

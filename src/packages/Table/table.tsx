@@ -17,7 +17,7 @@ const WisTable= (props:any,ref:any) => {
   const [pageSize,setPageSize]=useState(10);   // 每页条数
   const [data,setData]=useState([]);   // 数据
 
-  const {RequestURL}=props;
+  const {RequestURL,TableData,HidePagination,...others}=props;
 
 
   // 初始化
@@ -65,7 +65,7 @@ const WisTable= (props:any,ref:any) => {
   }
 
   useEffect(() => {
-    RequestURL && initFunc()
+    RequestURL && !TableData && initFunc()
   },[]);
 
   // 父组件调用
@@ -78,13 +78,14 @@ const WisTable= (props:any,ref:any) => {
   return (
     <>
       <Table 
-          {...props} 
+          {...others} 
           loading={loading}
           pagination={false}
           size={"small"}
-          dataSource={data} 
+          dataSource={TableData||data} 
       />
-      <div style={{padding:12,background:'#fff'}}>
+      { !HidePagination ?
+        <div style={{padding:12,background:'#fff'}}>
           <Pagination 
               current={current}
               total={total} 
@@ -97,7 +98,9 @@ const WisTable= (props:any,ref:any) => {
               showSizeChanger 
               showQuickJumper 
           />
-      </div>
+        </div>
+        :<></>
+      }
 
     </>
   );
