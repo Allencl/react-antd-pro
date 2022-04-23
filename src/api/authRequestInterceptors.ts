@@ -2,8 +2,17 @@ import { store } from '@/store'
 import { changeLoading } from '@/store/loadingSlice'
 
 
+
+// base url
+const BaseURL: { [key: string]: string }={
+  "dev":"http://58.34.47.130:22780/wisapi",   // 本地环境
+  "prod":"http://58.34.47.130:22780/wisapi"   // 线上环境
+}
+
+
 // http 请求 拦截器
 const authRequestInterceptors = (url: string, options: any) => {
+
 
     // loading
     (!options?.hideLoading) && store.dispatch(changeLoading(true))  
@@ -24,7 +33,7 @@ const authRequestInterceptors = (url: string, options: any) => {
   
   
     return {
-      url: `http://58.34.47.130:22780/wisapi${url}${_paramsRESTful}${_parmasURL}`,
+      url: `${BaseURL[REACT_APP_ENV||'dev']}${url}${_paramsRESTful}${_parmasURL}`,
       options: { ...options,data:options?.data||{}, interceptors: true, headers: authHeader },
     };
 };
