@@ -1,37 +1,45 @@
-import { Line } from '@ant-design/charts';
+import { Row, Col,Card } from 'antd';
+import { MoreOutlined } from '@ant-design/icons';
+
+
+import LineGDP from './Home/LineGDP'
+
+
+import WorldMap from './Home/WorldMap'
+import ChinaMap from './Home/ChinaMap'
 
 
 const Home=()=>{
-
-    const data = [
-        { year: '1991', value: 3 },
-        { year: '1992', value: 4 },
-        { year: '1993', value: 3.5 },
-        { year: '1994', value: 5 },
-        { year: '1995', value: 4.9 },
-        { year: '1996', value: 6 },
-        { year: '1997', value: 7 },
-        { year: '1998', value: 9 },
-        { year: '1999', value: 13 },
-      ];
-    
-      const config = {
-        data,
-        height: 400,
-        xField: 'year',
-        yField: 'value',
-        point: {
-          size: 5,
-          shape: 'diamond',
-        },
-      };
 
 
 
     return(
         <>
-            <h1>正在建设中。。。</h1>
-            {/* <Line {...config} /> */}
+          <h1>正在建设中。。。</h1>
+           {/* <Row gutter={[18,18]}>
+              <Col span={24}>
+                <Card title="GDP" extra={<a href="#"><MoreOutlined/></a>}>
+                  <div style={{height:300}}>
+                    <LineGDP />
+                  </div>
+                </Card>
+              </Col>
+              <Col span={12}>
+                <Card title="世界地图" extra={<a href="#"><MoreOutlined/></a>}>
+                  <div style={{height:300}}>
+                    <WorldMap />
+                  </div>
+                </Card>
+              </Col>
+              <Col span={12}>
+                <Card title="国内地图" extra={<a href="#"><MoreOutlined/></a>}>
+                  <div style={{height:300}}>
+                    <ChinaMap />
+                  </div>
+                </Card>
+              </Col>            
+          </Row> */}
+            
         </>
     )
 }
