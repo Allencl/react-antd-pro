@@ -1,8 +1,8 @@
-# Ant Design Pro
+# WIS-ui React
 
-This project is initialized with [Ant Design Pro](https://pro.ant.design). Follow is the quick guide for how to use.
+UI组件参考 [Ant Design Pro](https://pro.ant.design).
 
-## Environment Prepare
+## 项目初始化
 
 Install `node_modules`:
 
@@ -16,25 +16,29 @@ or
 yarn
 ```
 
-## Provided Scripts
+<!-- ## Provided Scripts
 
 Ant Design Pro provides some useful script to help you quick start and build with web project, code style check and test.
 
-Scripts provided in `package.json`. It's safe to modify or add additional script:
+Scripts provided in `package.json`. It's safe to modify or add additional script: -->
 
-### Start project
-
-```bash
-npm start
-```
-
-### Build project
+### 启动项目
 
 ```bash
-npm run build
+yarn start
 ```
 
-### Check code style
+### 构建项目
+
+```bash
+yarn build
+```
+
+### 关闭 Source map 警告提示
+![image](./public/sourcemap.jpg)
+![image](./public/sourcemap2.jpg)
+
+<!-- ### Check code style
 
 ```bash
 npm run lint
@@ -54,4 +58,4 @@ npm test
 
 ## More
 
-You can view full document on our [official website](https://pro.ant.design). And welcome any feedback in our [github](https://github.com/ant-design/ant-design-pro).
+You can view full document on our [official website](https://pro.ant.design). And welcome any feedback in our [github](https://github.com/ant-design/ant-design-pro). -->
