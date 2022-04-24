@@ -21,6 +21,14 @@ import WisMenu from './layouts/WisMenu'
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
+
+import { createFromIconfontCN } from '@ant-design/icons';
+
+// IconFont
+const IconFont = createFromIconfontCN({
+  scriptUrl: defaultSettings.iconfontUrl
+});
+
 /** 获取用户信息比较慢的时候会展示一个 loading */
 export const initialStateConfig = {
   loading: <PageLoading />,
@@ -93,6 +101,26 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
 
       },
     },
+    menuItemRender: (menuItemProps, defaultDom) => {
+
+      if (
+        menuItemProps.isUrl || !menuItemProps.path) {
+        return defaultDom;
+      }
+      // 支持二级菜单显示icon
+      return (
+        <Link to={menuItemProps.path}>
+            <>
+              { (menuItemProps.pro_layout_parentKeys && menuItemProps.pro_layout_parentKeys.length > 0) ? 
+                <IconFont type={String(menuItemProps.icon)} />
+                :
+                <></>
+              }
+              {defaultDom}
+            </>
+          </Link>
+      )
+    },  
     // menuDataRender:(menuData)=>{
     //   return menuData.map((item) => {
     //     return {
