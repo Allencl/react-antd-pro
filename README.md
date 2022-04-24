@@ -34,9 +34,9 @@ yarn start
 yarn build
 ```
 
-### 关闭 Source map 警告提示
+<!-- ### 关闭 Source map 警告提示
 ![image](./public/sourcemap.jpg)
-![image](./public/sourcemap2.jpg)
+![image](./public/sourcemap2.jpg) -->
 
 <!-- ### Check code style
 

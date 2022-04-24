@@ -11,11 +11,13 @@ const Settings: LayoutSettings & {
   "fixedHeader": false,
   "fixSiderbar": true,
   "pwa": false,
-  "logo": "https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg",
   "headerHeight": 48,
   "splitMenus": false,
   "title": '西信信息',
   "iconfontUrl": '',
+  "logo": "./logo.svg",
+  // "logo": "https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg",
+
 };
 
 export default Settings;
