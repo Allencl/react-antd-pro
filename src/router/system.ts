@@ -14,6 +14,10 @@ export default {
         {
             path: '/view-system/role',
             component: '@/view-system/role',
+        },
+        {
+            path: '/view-system/menu',
+            component: '@/view-system/menu',
         }
     ]
 }

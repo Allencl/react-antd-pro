@@ -26,6 +26,11 @@ const menu = [
           "name": "角色管理",
           "icon":"icon-jiaose",
           "path": "/view-system/role"
+        },
+        {
+          "name": "菜单管理",
+          "icon":"icon-caidanguanlix",
+          "path": "/view-system/menu"
         }
       ]
     }
