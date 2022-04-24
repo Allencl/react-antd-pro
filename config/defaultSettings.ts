@@ -14,7 +14,7 @@ const Settings: LayoutSettings & {
   "headerHeight": 48,
   "splitMenus": false,
   "title": '西信信息',
-  "iconfontUrl": '',
+  "iconfontUrl": '//at.alicdn.com/t/font_3354427_cbjubuqty6e.js',
   "logo": "./logo.svg",
   // "logo": "https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg",
 

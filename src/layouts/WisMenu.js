@@ -10,6 +10,7 @@ const IconMap = {
 const menu = [
     {
       "name":"系统管理",
+      "icon":"icon-xitong",
       "children":[
         {
           "name":"用户管理",

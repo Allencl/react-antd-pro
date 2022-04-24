@@ -93,14 +93,14 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
 
       },
     },
-    menuDataRender:(menuData)=>{
-      return menuData.map((item) => {
-        return {
-          ...item,
-          icon:<Icon component={RightSquareOutlined} />
-        };
-      });
-    },
+    // menuDataRender:(menuData)=>{
+    //   return menuData.map((item) => {
+    //     return {
+    //       ...item,
+    //       icon:<Icon component={RightSquareOutlined} />
+    //     };
+    //   });
+    // },
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
