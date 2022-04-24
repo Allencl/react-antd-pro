@@ -14,22 +14,18 @@ const menu = [
       "children":[
         {
           "name":"用户管理",
-          "icon":"icon-yonghuguanli",
           "path":"/view-system/user"
         },
         {
           "name": "权限管理",
-          "icon":"icon-quanxian",
           "path": "/view-system/permission"
         },
         {
           "name": "角色管理",
-          "icon":"icon-jiaose",
           "path": "/view-system/role"
         },
         {
           "name": "菜单管理",
-          "icon":"icon-caidanguanlix",
           "path": "/view-system/menu"
         }
       ]
