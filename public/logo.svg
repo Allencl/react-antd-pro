@@ -1,14 +1,6 @@
 <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
- <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
- <g>
-  <title>background</title>
-  <rect fill="#ffffff" id="canvas_background" height="202" width="202" y="-1" x="-1"/>
-  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
-   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
-  </g>
- </g>
- <g>
+ <g id="Layer_1">
   <title>Layer 1</title>
-  <text font-style="italic" font-weight="bold" stroke="#000" transform="matrix(3.592358546437411,0,0,7.13951204839823,-126.29181154228361,-330.4276366590288) " xml:space="preserve" text-anchor="start" font-family="Georgia, Times, 'Times New Roman', serif" font-size="24" id="svg_1" y="68.600604" x="35.126661" stroke-width="0" fill="#1890ff">WIS</text>
+  <text font-style="italic" font-weight="bold" transform="rotate(-0.229795 84.949 97.8586) matrix(3.86909 0 0 6.70576 -78.2892 -258.653)" stroke="#000" xml:space="preserve" text-anchor="start" font-family="'Cabin'" font-size="24" id="svg_1" y="61.71403" x="19.0833" stroke-width="0" fill="#1890ff">WIS</text>
  </g>
 </svg>
