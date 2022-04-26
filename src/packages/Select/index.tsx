@@ -1,5 +1,5 @@
 
-import { useState,useEffect,useCallback} from 'react';
+import { useState,useEffect} from 'react';
 import { Select } from 'antd';
 import { request } from 'umi';
 
@@ -42,34 +42,45 @@ const WisSelect= (props:any,ref:any) => {
     // 获取 数据字典
     const onGetBaseData=()=>{
         setLoading(true)
-        setOptions(BaseDataJSON[BaseDataType]||[])
+        setOptions( (BaseDataJSON[BaseDataType]||[]) )
         setLoading(false)
     }
 
     // 展开
     const onDropdownVisibleChange=(active:boolean)=>{
-        if(active && !options.length){
-            BaseDataType?onGetBaseData(): getOptions()
-        }else{
-            setLoading(false)
-        }
+        // if(active && !options.length){
+        //     BaseDataType?onGetBaseData(): getOptions()
+        // }else{
+        //     setLoading(false)
+        // }
+
+        !active && setLoading(false)
     }
 
 
     useEffect(() => {
-        // console.log(333)
+
+        // 数据字典
+        if(BaseDataType){
+            onGetBaseData()  
+        }
+
+        // 远程数据
+        if(RequestURL){
+            getOptions()  
+        }
+
     },[]);
 
     return(
         <>
-            <Select 
-                {...others}
-                
+            <Select         
                 placeholder="请选择"
                 allowClear
                 loading={loading}
                 options={options}
                 onDropdownVisibleChange={onDropdownVisibleChange}
+                {...others}
             />
         </>
     )

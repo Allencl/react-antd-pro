@@ -8,5 +8,15 @@
             "label":"BUTTON",
             "value":"BUTTON"
         }
+    ],
+    "MENU_TYPE":[
+        {
+            "label":"目录",
+            "value":"fodder"
+        },
+        {
+            "label":"菜单",
+            "value":"menu"
+        }
     ]
 }

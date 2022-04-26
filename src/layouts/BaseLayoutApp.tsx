@@ -16,7 +16,7 @@ const LayoutApp = ({children}:any) => {
 
     return (
         <>  
-            <Spin spinning={loadingValue} delay={300}>
+            <Spin spinning={loadingValue} delay={100}>
                 <ConfigProvider form={{ validateMessages }}>
                     {children}
                 </ConfigProvider>
